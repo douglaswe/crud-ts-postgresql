@@ -1,5 +1,4 @@
 import express from 'express';
-import dotenv from 'dotenv';
 import cors from 'cors';
 
 import authRoutes from './routes/authRoutes';
@@ -7,8 +6,6 @@ import livroRoutes from './routes/livroRoutes';
 
 import swaggerUi from 'swagger-ui-express';
 import { swaggerSpec } from './docs/swagger';
-
-dotenv.config();
 
 const app = express();
 app.use(cors());

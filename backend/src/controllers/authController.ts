@@ -10,7 +10,6 @@ const prisma = new PrismaClient();
 export async function registrar(req: Request, res: Response): Promise<void> {
   const { username, password, nome, tipo } = req.body;
 
-  // Apenas administradores podem criar novos usuários
   const solicitante = (req as any).user as TokenPayload;
   if (solicitante.tipo !== '0') {
     res.status(403).json({ message: 'Apenas administradores podem criar novos usuários' });
