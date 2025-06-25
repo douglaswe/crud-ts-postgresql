@@ -2,6 +2,8 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 
 type User = {
   username: string;
+  nome: string;
+  quantAcesso: number;
   tipo: '0' | '1'; // 0 = admin, 1 = comum
 };
 

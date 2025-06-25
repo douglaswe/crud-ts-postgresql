@@ -21,6 +21,3 @@ export function authenticateToken(req: Request, res: Response, next: NextFunctio
     next();
   });
 }
-
-// import bcrypt from 'bcrypt';
-// bcrypt.hash('admin123', 10).then(console.log);$2b$10$7tWvLiHWp4gJ0Ue8wPJJ5uiekjKmKTy2qsrJWF1a62RuLHq18sU4u

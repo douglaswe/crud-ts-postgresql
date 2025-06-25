@@ -52,9 +52,9 @@ export default function AdminCadastroUsuario() {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
-            type="text"
+            type="email"
             name="username"
-            placeholder="Usuário"
+            placeholder="Username (email)"
             value={form.username}
             onChange={handleChange}
             className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"

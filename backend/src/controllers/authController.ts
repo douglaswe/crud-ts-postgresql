@@ -50,13 +50,13 @@ export async function login(req: Request, res: Response): Promise<void> {
     res.status(404).json({ message: 'Usuário não encontrado' });
     return;
   }
-  
+
   if (usuario.status === 'B') {
     console.warn(`Usuário ${username} bloqueado por 3 tentativas inválidas.`);
     res.status(403).json({ message: 'Usuário bloqueado' });
     return;
   }
- 
+
   const senhaCorreta = await bcrypt.compare(password, usuario.password);
 
   if (!senhaCorreta) {
@@ -75,9 +75,23 @@ export async function login(req: Request, res: Response): Promise<void> {
     }
   });
 
-  const token = jwt.sign({ username, tipo: usuario.tipo }, process.env.JWT_SECRET!, { expiresIn: '1h' });
+  const usuarioAtualizado = await prisma.usuario.findUnique({ where: { username } });
 
-  res.json({ token, user: { username: usuario.username, tipo: usuario.tipo, nome: usuario.nome } });
+  const token = jwt.sign(
+    { username: usuarioAtualizado!.username, tipo: usuarioAtualizado!.tipo },
+    process.env.JWT_SECRET!,
+    { expiresIn: '1h' }
+  );
+
+  res.json({
+    token,
+    user: {
+      username: usuarioAtualizado!.username,
+      tipo: usuarioAtualizado!.tipo,
+      nome: usuarioAtualizado!.nome,
+      quantAcesso: usuarioAtualizado!.quantAcesso
+    }
+  })
 }
 
 export async function alterarSenha(req: Request, res: Response): Promise<void> {
@@ -103,18 +117,29 @@ export async function alterarSenha(req: Request, res: Response): Promise<void> {
   res.json({ message: 'Senha alterada com sucesso' });
 }
 
+
 export async function solicitarRecuperacao(req: Request, res: Response): Promise<void> {
   const { username } = req.body;
+
   const usuario = await prisma.usuario.findUnique({ where: { username } });
+
   if (!usuario) {
     res.status(404).json({ message: 'Usuário não encontrado' });
     return;
   }
 
-  const token = jwt.sign({ username: usuario.username }, process.env.JWT_SECRET!, { expiresIn: '15m' });
-  console.log('Link de recuperação:', `http://localhost:3000/auth/redefinir-senha?token=${token}`);
+  const token = jwt.sign(
+    { username: usuario.username },
+    process.env.JWT_SECRET!,
+    { expiresIn: '15m' }
+  );
 
-  res.json({ message: 'Link de recuperação enviado (simulado)' });
+  const urlRecuperacao = `http://localhost:5173/redefinir-senha?token=${token}`;
+
+  res.json({
+    message: 'Link de recuperação gerado.',
+    link: urlRecuperacao
+  });
 }
 
 export async function redefinirSenha(req: Request, res: Response): Promise<void> {

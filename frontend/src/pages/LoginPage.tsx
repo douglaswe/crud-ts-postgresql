@@ -48,11 +48,11 @@ export default function LoginPage() {
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
 
           <input
-            type="text"
+            type="email"
             className="border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="Usuario"
+            placeholder="Username (email)"
             required
           />
 
@@ -66,7 +66,7 @@ export default function LoginPage() {
           />
 
 
-          {erro && <p className="text-red-600 text-sm mb-4">{erro}</p>}
+          {erro && <p className="text-red-600 mb-4 text-center">{erro}</p>}
 
           <button
             type="submit"
@@ -74,7 +74,10 @@ export default function LoginPage() {
           >
             Entrar
           </button>
-          <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+          <a 
+          className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 cursor-pointer"
+          onClick={()=> navigate('/recuperar-senha')}
+          >
             Esqueceu a senha?
           </a>
         </form>

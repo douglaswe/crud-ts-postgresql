@@ -35,7 +35,7 @@ const router = Router();
  *             properties:
  *               username:
  *                 type: string
- *                 example: admin
+ *                 example: admin@admin.com
  *               password:
  *                 type: string
  *                 example: admin123
@@ -64,14 +64,14 @@ router.post('/login', login);
  *           schema:
  *             type: object
  *             required:
- *               - username
+ *               - username(email)
  *               - password
  *               - nome
  *               - tipo
  *             properties:
  *               username:
  *                 type: string
- *                 example: joao
+ *                 example: joao@email.com
  *               password:
  *                 type: string
  *                 example: senha123
@@ -152,7 +152,7 @@ router.post('/solicitar-recuperacao', solicitarRecuperacao);
 /**
  * @swagger
  * /auth/redefinir-senha:
- *   post:
+ *   patch:
  *     summary: Redefine a senha usando um token temporário
  *     tags: [Autenticação]
  *     requestBody:
@@ -177,6 +177,6 @@ router.post('/solicitar-recuperacao', solicitarRecuperacao);
  *       400:
  *         description: Token inválido ou expirado
  */
-router.post('/redefinir-senha', redefinirSenha);
+router.patch('/redefinir-senha', redefinirSenha);
 
 export default router;

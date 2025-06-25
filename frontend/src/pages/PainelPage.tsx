@@ -101,27 +101,28 @@ export default function PainelPage() {
       }
     }
   }
-
+  
   const handleLogout = () => { logout(); navigate('/'); };
 
   return (
     <div className="p-8 bg-gray-100 min-h-screen">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-xl font-bold">
-          Bem-vindo, {user?.username} ({user?.tipo === '0' ? 'Administrador' : 'Usuário'})
+          Bem-vindo, {user?.nome} ({user?.tipo === '0' ? 'Administrador' : 'Usuário'}) - Acessos: {user?.quantAcesso}
+          
         </h1>
 
         <div className="flex gap-2">
           {user?.tipo === '0' && (
             <button
               onClick={() => navigate('/admin/cadastrar-usuario')}
-              className="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 cursor-pointer"
+              className="border border-blue-600 text-blue-600 rounded hover:bg-blue-100 transition-all cursor-pointer px-4 py-2"
             >
               Cadastrar Usuário
             </button>
           )}
           <button
-            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 cursor-pointer"
+            className="border border-red-600 text-red-600 rounded hover:bg-red-100 transition-all cursor-pointer px-4 py-2"
             onClick={handleLogout}
           >
             Logout
@@ -151,6 +152,7 @@ export default function PainelPage() {
           <Paginacao
             pagina={pagina}
             total={totalPaginas}
+            livrosCarregados={livros.length}
             onAnterior={() => setPagina(pagina - 1)}
             onProximo={() => setPagina(pagina + 1)}
           />
