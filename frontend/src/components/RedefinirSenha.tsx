@@ -48,9 +48,10 @@ export default function RedefinirSenha() {
   const [confirmarSenha, setConfirmarSenha] = useState('');
   const [erro, setErro] = useState('');
   const [mensagem, setMensagem] = useState('');
-  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  
   const token = searchParams.get('token');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -105,7 +106,7 @@ export default function RedefinirSenha() {
           {erro && <p className="text-red-600 text-sm">{erro}</p>}
           {mensagem && <p className="text-green-600 text-sm">{mensagem}</p>}
          
-          <button type="submit" className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
+          <button type="submit" className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 cursor-pointer">
             Redefinir senha
           </button>
 

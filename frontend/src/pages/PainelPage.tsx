@@ -29,7 +29,7 @@ export default function PainelPage() {
   const { user, token, logout } = useAuth();
   const navigate = useNavigate();
 
-  const porPagina = 4;
+  const porPagina = 5;
 
   async function carregarLivros() {
     setCarregando(true);

@@ -10,6 +10,7 @@ export default function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [erro, setErro] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,11 +31,11 @@ export default function LoginPage() {
       const msg = error.response?.data?.message;
 
       if (msg === 'Usuário bloqueado') {
-        setErro('Usuário bloqueado.');
+        setErro('Usuário bloqueado...');
       } else if (msg === 'Senha incorreta') {
-        setErro('Senha incorreta.');
+        setErro('Senha ou usuário incorreta...');
       } else if (msg === 'Usuário não encontrado') {
-        setErro('Usuário não encontrado.');
+        setErro('Usuário não encontrado...');
       } else {
         setErro('Erro ao conectar com o servidor.');
       }
@@ -57,7 +58,7 @@ export default function LoginPage() {
           />
 
           <input
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             className="border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -65,6 +66,16 @@ export default function LoginPage() {
             required
           />
 
+          <div className="flex items-center justify-between text-sm">
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={showPassword}
+                onChange={() => setShowPassword(!showPassword)}
+              />
+              Mostrar senha
+            </label>
+          </div>
 
           {erro && <p className="text-red-600 mb-4 text-center">{erro}</p>}
 
@@ -74,9 +85,9 @@ export default function LoginPage() {
           >
             Entrar
           </button>
-          <a 
-          className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 cursor-pointer"
-          onClick={()=> navigate('/recuperar-senha')}
+          <a
+            className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 cursor-pointer"
+            onClick={() => navigate('/recuperar-senha')}
           >
             Esqueceu a senha?
           </a>
