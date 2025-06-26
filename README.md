@@ -41,7 +41,7 @@ Após autenticação, usuários podem realizar as seguintes ações com livros:
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/nome-do-projeto.git
+git clone https://github.com/seu-usuario/crud-ts-postgresql.git
 ```
 ### 2. Instale as dependências do frontend
 ```bash
