@@ -12,10 +12,13 @@ app.use(cors());
 
 app.use(express.json());
 
+const PORT = process.env.PORT || 3000
+
+
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/auth', authRoutes);
 app.use('/livros', livroRoutes);
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log('Servidor rodando na porta 3000');
 });

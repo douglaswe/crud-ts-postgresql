@@ -140,10 +140,10 @@ router.patch('/alterar-senha', authenticateToken, alterarSenha);
  *             properties:
  *               username:
  *                 type: string
- *                 example: joao
+ *                 example: joao@email.com
  *     responses:
  *       200:
- *         description: Link de recuperação gerado (simulado no console)
+ *         description: Link de recuperação gerado (simulado)
  *       404:
  *         description: Usuário não encontrado
  */
@@ -167,7 +167,7 @@ router.post('/solicitar-recuperacao', solicitarRecuperacao);
  *             properties:
  *               token:
  *                 type: string
- *                 example: seu.token.jwt.aqui
+ *                 example: seu_token_jwt_aqui
  *               novaSenha:
  *                 type: string
  *                 example: novaSenha456
