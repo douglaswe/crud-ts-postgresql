@@ -65,6 +65,12 @@ DATABASE_URL="postgresql://usuario:senha@localhost:5432/nome_do_banco"
 JWT_SECRET="sua_chave_secreta_aqui"
 ```
 
+Crie tambem um arquivo `.env` na pasta `frontend` do projeto com o seguinte conteúdo:
+
+```bash
+VITE_API_URL=http://localhost:5173
+```
+
 ### 5. Execute as migrações e inicie o servidor
 
 ### Rodar o backend:

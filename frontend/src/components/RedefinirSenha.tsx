@@ -1,47 +1,7 @@
-// import { useState } from "react";
-// import axios from "axios";
-// import { useSearchParams } from "react-router-dom";
-
-// export default function RedefinirSenha() {
-//   const [novaSenha, setNovaSenha] = useState("");
-//   const [mensagem, setMensagem] = useState("");
-//   const [params] = useSearchParams();
-//   const token = params.get("token");
-
-//   const handleSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault();
-//     try {
-//       const res = await axios.post("http://localhost:3000/auth/alterar-senha", { token, novaSenha });
-//       setMensagem(res.data.message);
-//     } catch (err: any) {
-//       setMensagem(err.response?.data?.message || "Erro ao redefinir senha.");
-//     }
-//   };
-
-//   return (
-//     <div className="min-h-screen flex items-center justify-center">
-//       <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow w-full max-w-sm">
-//         <h2 className="text-xl font-bold mb-4">Redefinir Senha</h2>
-//         <input
-//           type="password"
-//           placeholder="Nova senha"
-//           value={novaSenha}
-//           onChange={(e) => setNovaSenha(e.target.value)}
-//           className="w-full border p-2 mb-4 rounded"
-//           required
-//         />
-//         <button type="submit" className="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600">
-//           Redefinir senha
-//         </button>
-//         {mensagem && <p className="mt-4 text-center">{mensagem}</p>}
-//       </form>
-//     </div>
-//   );
-// }
-// pages/RedefinirSenha.tsx
 import { useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { baseURL } from '../types';
 
 export default function RedefinirSenha() {
   const [novaSenha, setNovaSenha] = useState('');
@@ -69,7 +29,7 @@ export default function RedefinirSenha() {
     }
 
     try {
-      await axios.patch('http://localhost:3000/auth/redefinir-senha', {
+      await axios.patch(`${baseURL}/auth/redefinir-senha`, {
         token,
         novaSenha,
       });

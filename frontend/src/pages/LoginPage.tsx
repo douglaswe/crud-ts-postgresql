@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import axios from 'axios';
+import { baseURL } from '../types';
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ export default function LoginPage() {
     setErro('');
 
     try {
-      const response = await axios.post('http://localhost:3000/auth/login', {
+      const response = await axios.post(`${baseURL}/auth/login`, {
         username,
         password,
       });

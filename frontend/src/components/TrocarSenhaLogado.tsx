@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import axios from 'axios'
+import { baseURL } from '../types'
 
 export function TrocarSenhaLogado() {
     const [senhaAtual, setSenhaAtual] = useState('')
@@ -21,7 +22,7 @@ export function TrocarSenhaLogado() {
         try {
             const token = localStorage.getItem('token')
             await axios.patch(
-                'http://localhost:3000/auth/alterar-senha',
+                `${baseURL}/auth/alterar-senha`,
                 { senhaAtual, novaSenha },
                 {
                     headers: {

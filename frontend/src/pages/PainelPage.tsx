@@ -6,7 +6,7 @@ import { EditarModal } from '../components/EditarModal';
 import { DeletarModal } from '../components/DeletarModal';
 import { Paginacao } from '../components/Paginacao';
 import { TabsNavegacao } from '../components/TabsNavegacao';
-import type { Livro } from '../types';
+import { baseURL, type Livro } from '../types';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { TrocarSenhaLogado } from '../components/TrocarSenhaLogado';
@@ -31,10 +31,13 @@ export default function PainelPage() {
 
   const porPagina = 5;
 
+
+
   async function carregarLivros() {
     setCarregando(true);
     try {
-      const { data } = await axios.get(`http://localhost:3000/livros?page=${pagina}&limit=${porPagina}`, {
+      const { data } = await axios.get(`${baseURL}/livros?page=${pagina}&limit=${porPagina}`, {
+
         headers: { Authorization: `Bearer ${token}` },
       });
       setLivros(data.data);
@@ -59,7 +62,7 @@ export default function PainelPage() {
     }
 
     try {
-      await axios.post('http://localhost:3000/livros', { titulo, autor }, {
+      await axios.post(`${baseURL}/livros`, { titulo, autor }, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setTitulo('');
@@ -74,7 +77,7 @@ export default function PainelPage() {
   async function salvarEdicao() {
     if (livroSelecionado) {
       try {
-        await axios.put(`http://localhost:3000/livros/${livroSelecionado.id}`, {
+        await axios.put(`${baseURL}/livros/${livroSelecionado.id}`, {
           titulo: livroSelecionado.titulo,
           autor: livroSelecionado.autor,
         }, {
@@ -91,7 +94,7 @@ export default function PainelPage() {
   async function confirmarExclusao() {
     if (modalExcluir) {
       try {
-        await axios.delete(`http://localhost:3000/livros/${modalExcluir.id}`, {
+        await axios.delete(`${baseURL}/livros/${modalExcluir.id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setModalExcluir(null);

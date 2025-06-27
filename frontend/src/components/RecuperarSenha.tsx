@@ -1,96 +1,7 @@
-// import { useState } from "react";
-// import axios from "axios";
-
-// export default function RecuperarSenha() {
-//   const [username, setUsername] = useState("");
-//   const [mensagem, setMensagem] = useState("");
-
-//   const handleSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault();
-//     try {
-//       const res = await axios.post("http://localhost:3000/auth/solicitar-recuperacao", { username });
-//       setMensagem(res.data.message);
-//     } catch (err: any) {
-//       setMensagem(err.response?.data?.message || "Erro ao solicitar recuperação.");
-//     }
-//   };
-
-//   return (
-//     <div className="min-h-screen flex items-center justify-center">
-//       <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow w-full max-w-sm">
-//         <h2 className="text-xl font-bold mb-4">Recuperar Senha</h2>
-//         <input
-//           type="text"
-//           placeholder="Usuário"
-//           value={username}
-//           onChange={(e) => setUsername(e.target.value)}
-//           className="w-full border p-2 mb-4 rounded"
-//           required
-//         />
-//         <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
-//           Enviar link de recuperação
-//         </button>
-//         {mensagem && <p className="mt-4 text-center">{mensagem}</p>}
-//       </form>
-//     </div>
-//   );
-// }
-
-
-
-// import { useState } from 'react';
-// import axios from 'axios';
-
-// export default function RecuperarSenha() {
-//   const [username, setUsername] = useState('');
-//   const [mensagem, setMensagem] = useState('');
-//   const [erro, setErro] = useState('');
-
-//   const handleSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault();
-//     setErro('');
-//     setMensagem('');
-
-//     try {
-//       const res = await axios.post('http://localhost:3000/auth/solicitar-recuperacao', { username });
-//       setMensagem('Se o e-mail existir, um link de recuperação foi enviado.');
-//     } catch (err: any) {
-//       if (err.response?.status === 404) {
-//         setErro('Usuário não encontrado.');
-//       } else {
-//         setErro('Erro ao tentar enviar o e-mail.');
-//       }
-//     }
-//   };
-
-//   return (
-//     <div className="flex flex-col items-center justify-center h-screen bg-blue-100">
-//       <div className="bg-white p-8 rounded shadow-md w-96">
-//         <h2 className="text-xl font-bold mb-4 text-center">Recuperar Senha</h2>
-//         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-//           <input
-//             type="email"
-//             value={username}
-//             onChange={(e) => setUsername(e.target.value)}
-//             placeholder="Seu e-mail"
-//             required
-//             className="border border-gray-300 p-2 rounded"
-//           />
-//           {mensagem && <p className="text-green-600 text-sm">{mensagem}</p>}
-//           {erro && <p className="text-red-600 text-sm">{erro}</p>}
-
-//           <button type="submit" className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
-//             Enviar link
-//           </button>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// }
-
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { baseURL } from '../types';
 
 export default function RecuperarSenha() {
   const [username, setUsername] = useState('');
@@ -107,7 +18,7 @@ export default function RecuperarSenha() {
     setLink('');
 
     try {
-      const res = await axios.post('http://localhost:3000/auth/solicitar-recuperacao', { username });
+      const res = await axios.post(`${baseURL}/auth/solicitar-recuperacao`, { username });
 
       if (res.data.link) {
         setLink(res.data.link); 

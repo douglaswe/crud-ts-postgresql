@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { baseURL } from '../types';
 
 export default function AdminCadastroUsuario() {
   const { token, isAdmin } = useAuth();
@@ -28,7 +29,7 @@ export default function AdminCadastroUsuario() {
     e.preventDefault();
     try {
       await axios.post(
-        'http://localhost:3000/auth/register',
+        `${baseURL}/auth/register`,
         form,
         { headers: { Authorization: `Bearer ${token}` } }
       );
