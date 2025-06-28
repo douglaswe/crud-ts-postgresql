@@ -4,8 +4,15 @@ Você pode visualizar o projeto em funcionamento através do seguinte link:
 
 🔗 [https://crud-ts-postgresql.vercel.app/](https://crud-ts-postgresql.vercel.app/)
 
-> ⚠️ **Atenção:** no primeiro acesso, especialmente ao realizar o login, o carregamento pode levar alguns segundos.  
-> Isso acontece porque o backend está em modo de hibernação e pode demorar um pouco para ser reativado.
+> ⚠️ **Observação:** no primeiro acesso, especialmente ao tentar fazer login, o carregamento pode demorar alguns segundos.  
+Isso ocorre porque o servidor backend entra em hibernação automática quando inativo, e precisa ser reativado.
+
+### 🔑 Credenciais de Acesso de Teste
+
+Você pode utilizar as credenciais abaixo para acessar o sistema com um perfil de administrador:
+
+- **Usuário:** `admin@admin.com`  
+- **Senha:** `admin123`
 
 # Sistema de Autenticação e Gerenciamento de Acessos
 
@@ -44,7 +51,10 @@ Após autenticação, usuários podem realizar as seguintes ações com livros:
 - Autenticação: JWT (JSON Web Tokens)
 - Banco de Dados: PostgreSQL
 - Criptografia: bcrypt
-
+- Prisma ORM — para modelagem e migração do banco de dados
+- Swagger — para documentação interativa da API
+- Vite — para build e execução rápida do frontend
+  
 ## 🚀 Como rodar o projeto localmente
 
 ### 1. Clone o repositório
@@ -107,4 +117,8 @@ Com o servidor backend em execução, acesse a documentação interativa da API 
 http://localhost:3000/api-docs
 ```
 
-Essa interface permite visualizar todos os endpoints disponíveis, entender quais parâmetros são esperados em cada rota e testar requisições diretamente pelo navegador — sem a necessidade de ferramentas como Postman ou Insomnia.
+A interface do Swagger permite:
+- Visualizar todos os endpoints disponíveis
+- Consultar os parâmetros esperados em cada rota
+- Realizar testes diretamente pelo navegador, sem precisar de ferramentas externas como Postman ou Insomnia
+
