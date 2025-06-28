@@ -4,8 +4,8 @@ Você pode visualizar o projeto em funcionamento através do seguinte link:
 
 🔗 [https://crud-ts-postgresql.vercel.app/](https://crud-ts-postgresql.vercel.app/)
 
-> ⚠️ **Observação:** no primeiro acesso, especialmente ao tentar fazer login, o carregamento pode demorar alguns segundos.  
-Isso ocorre porque o servidor backend entra em hibernação automática quando inativo, e precisa ser reativado.
+> ⚠️ **Observação:** no primeiro acesso, especialmente ao tentar fazer login, o carregamento pode levar cerca de 20 segundos.  
+Isso acontece porque o servidor backend entra em hibernação automática quando está inativo, e precisa de alguns segundos para ser reativado.
 
 ### 🔑 Credenciais de Acesso de Teste
 
